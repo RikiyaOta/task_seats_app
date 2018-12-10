@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="366,362" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="task_seats_app" is-template="false" allow-conns="true">
+	<comment><![CDATA[タスクシートアプリ]]></comment>
+</database>
+
+<tag name="SYSTEM">
+	<style id="table-body" colors="#fcfcfc,#fcfcfc,#808080"/>
+	<style id="table-ext-body" colors="#fcfcfc,#fcfcfc,#808080"/>
+	<style id="table-name" colors="#000000"/>
+	<style id="table-schema-name" colors="#000000"/>
+	<style id="table-title" colors="#fc0280,#fc0280,#fc0280"/>
+</tag>
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="users">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[ユーザー]]></comment>
+	<position x="420" y="520"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="32"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="varchar" length="256"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="varchar" length="256"/>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="created_by" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="users_pk" type="pk-constr" table="public.users">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="uq_user_email" type="uq-constr" table="public.users">
+		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tasks">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[タスク]]></comment>
+	<position x="1040" y="980"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="title" not-null="true">
+		<type name="varchar" length="64"/>
+		<comment><![CDATA[タイトル]]></comment>
+	</column>
+	<column name="content" not-null="true">
+		<type name="text" length="0"/>
+		<comment><![CDATA[内容]]></comment>
+	</column>
+	<column name="category_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="sheat_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="created_by" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="modified_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="modified_by" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="importance" not-null="true">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[重要度]]></comment>
+	</column>
+	<column name="urgency" not-null="true">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[緊急度]]></comment>
+	</column>
+	<constraint name="tasks_pk" type="pk-constr" table="public.tasks">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="ch_importance" type="ck-constr" table="public.tasks">
+			<expression><![CDATA[-100 <= importance AND importance <= 100]]></expression>
+	</constraint>
+	<constraint name="ch_urgency" type="ck-constr" table="public.tasks">
+			<expression><![CDATA[-100 <= urgency AND urgency <= 100]]></expression>
+	</constraint>
+</table>
+
+<table name="categories">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[タスクのカテゴリー]]></comment>
+	<position x="1680" y="680"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="16"/>
+		<comment><![CDATA[タイプ名]]></comment>
+	</column>
+	<column name="color" not-null="true">
+		<type name="varchar" length="32"/>
+	</column>
+	<column name="sheat_id" not-null="true">
+		<type name="uuid" length="0"/>
+		<comment><![CDATA[シートID]]></comment>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="created_by" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="modified_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="modified_by" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="task_types_pk" type="pk-constr" table="public.categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sheats">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[シート。ユーザーが複数のシートを共有できるようにしたい。]]></comment>
+	<position x="1040" y="520"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="64"/>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="created_by" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="modified_at" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="modified_by" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="sheats_pk" type="pk-constr" table="public.sheats">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="users_sheats">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[ユーザー:シート＝n:n]]></comment>
+	<position x="760" y="340"/>
+	<column name="user_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="sheat_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="uq_users_sheats" type="uq-constr" table="public.users_sheats">
+		<columns names="user_id,sheat_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="system_accounts">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[システム管理用アカウント]]></comment>
+	<tag name="SYSTEM"/>
+	<position x="520" y="860"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="varchar" length="256"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="varchar" length="256"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="64"/>
+	</column>
+	<constraint name="system_accounts_pk" type="pk-constr" table="public.system_accounts">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="uq_system_account_email" type="uq-constr" table="public.system_accounts">
+		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk_categories" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.categories" table="public.tasks">
+	<columns names="category_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_sheats" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheats" table="public.tasks">
+	<columns names="sheat_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_sheats" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheats" table="public.categories">
+	<columns names="sheat_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_users" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.users" table="public.users_sheats">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_sheats" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheats" table="public.users_sheats">
+	<columns names="sheat_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_tasks_task_types" type="relfk"
+	 src-table="public.tasks"
+	 dst-table="public.categories" reference-fk="fk_categories"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_users_sheats_users" type="relfk"
+	 src-table="public.users_sheats"
+	 dst-table="public.users" reference-fk="fk_users"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_users_sheats_sheats" type="relfk"
+	 src-table="public.users_sheats"
+	 dst-table="public.sheats" reference-fk="fk_sheats"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_task_types_sheats" type="relfk"
+	 src-table="public.categories"
+	 dst-table="public.sheats" reference-fk="fk_sheats"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tasks_sheats" type="relfk"
+	 src-table="public.tasks"
+	 dst-table="public.sheats" reference-fk="fk_sheats"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
