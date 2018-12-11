@@ -188,7 +188,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 	<comment><![CDATA[システム管理用アカウント]]></comment>
 	<tag name="SYSTEM"/>
-	<position x="520" y="860"/>
+	<position x="160" y="320"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -206,6 +206,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 	<constraint name="uq_system_account_email" type="uq-constr" table="public.system_accounts">
 		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="users_tasks">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="900"/>
+	<column name="user_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="task_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="uq_users_tasks" type="uq-constr" table="public.users_tasks">
+		<columns names="user_id,task_id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -239,6 +254,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="fk_users" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.users" table="public.users_tasks">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_tasks" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.tasks" table="public.users_tasks">
+	<columns names="task_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
 <relationship name="rel_tasks_task_types" type="relfk"
 	 src-table="public.tasks"
 	 dst-table="public.categories" reference-fk="fk_categories"
@@ -262,6 +289,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_tasks_sheats" type="relfk"
 	 src-table="public.tasks"
 	 dst-table="public.sheats" reference-fk="fk_sheats"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_users_tasks_users" type="relfk"
+	 src-table="public.users_tasks"
+	 dst-table="public.users" reference-fk="fk_users"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_users_tasks_tasks" type="relfk"
+	 src-table="public.users_tasks"
+	 dst-table="public.tasks" reference-fk="fk_tasks"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
