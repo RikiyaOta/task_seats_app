@@ -19,7 +19,7 @@
 -- DROP TABLE IF EXISTS public.users CASCADE;
 CREATE TABLE public.users(
 	id uuid NOT NULL,
-	name varchar(32) NOT NULL,
+	name varchar(64) NOT NULL,
 	email varchar(256) NOT NULL,
 	password varchar(256) NOT NULL,
 	created_at timestamp with time zone NOT NULL,
@@ -71,7 +71,7 @@ ALTER TABLE public.tasks OWNER TO postgres;
 -- DROP TABLE IF EXISTS public.categories CASCADE;
 CREATE TABLE public.categories(
 	id uuid NOT NULL,
-	name varchar(16) NOT NULL,
+	name varchar(64) NOT NULL,
 	color varchar(32) NOT NULL,
 	sheat_id uuid NOT NULL,
 	created_at timestamp with time zone NOT NULL,
@@ -174,6 +174,3 @@ ALTER TABLE public.users_sheats ADD CONSTRAINT fk_sheats FOREIGN KEY (sheat_id)
 REFERENCES public.sheats (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
-
-
-
