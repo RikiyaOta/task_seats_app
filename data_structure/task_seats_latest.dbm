@@ -28,7 +28,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="name" not-null="true">
-		<type name="varchar" length="32"/>
+		<type name="varchar" length="64"/>
 	</column>
 	<column name="email" not-null="true">
 		<type name="varchar" length="256"/>
@@ -112,7 +112,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="name" not-null="true">
-		<type name="varchar" length="16"/>
+		<type name="varchar" length="64"/>
 		<comment><![CDATA[タイプ名]]></comment>
 	</column>
 	<column name="color" not-null="true">
@@ -265,3 +265,4 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
+
