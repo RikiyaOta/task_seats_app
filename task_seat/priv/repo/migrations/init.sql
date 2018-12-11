@@ -140,6 +140,18 @@ COMMENT ON TABLE public.system_accounts IS 'システム管理用アカウント
 ALTER TABLE public.system_accounts OWNER TO postgres;
 -- ddl-end --
 
+-- object: public.users_tasks | type: TABLE --
+-- DROP TABLE IF EXISTS public.users_tasks CASCADE;
+CREATE TABLE public.users_tasks(
+	user_id uuid NOT NULL,
+	task_id uuid NOT NULL,
+	CONSTRAINT uq_users_tasks UNIQUE (user_id,task_id)
+
+);
+-- ddl-end --
+ALTER TABLE public.users_tasks OWNER TO postgres;
+-- ddl-end --
+
 -- object: fk_categories | type: CONSTRAINT --
 -- ALTER TABLE public.tasks DROP CONSTRAINT IF EXISTS fk_categories CASCADE;
 ALTER TABLE public.tasks ADD CONSTRAINT fk_categories FOREIGN KEY (category_id)
@@ -174,3 +186,20 @@ ALTER TABLE public.users_sheats ADD CONSTRAINT fk_sheats FOREIGN KEY (sheat_id)
 REFERENCES public.sheats (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
+
+-- object: fk_users | type: CONSTRAINT --
+-- ALTER TABLE public.users_tasks DROP CONSTRAINT IF EXISTS fk_users CASCADE;
+ALTER TABLE public.users_tasks ADD CONSTRAINT fk_users FOREIGN KEY (user_id)
+REFERENCES public.users (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: fk_tasks | type: CONSTRAINT --
+-- ALTER TABLE public.users_tasks DROP CONSTRAINT IF EXISTS fk_tasks CASCADE;
+ALTER TABLE public.users_tasks ADD CONSTRAINT fk_tasks FOREIGN KEY (task_id)
+REFERENCES public.tasks (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+
+
