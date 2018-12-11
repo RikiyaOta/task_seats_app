@@ -4,6 +4,7 @@ defmodule TaskSeat.Accounts.User do
 
   alias TaskSeat.Accounts.User
   alias TaskSeat.Tasks.Sheat
+  alias TaskSeat.Tasks.Task
 
   schema "users" do
     field :name, :string
@@ -13,6 +14,7 @@ defmodule TaskSeat.Accounts.User do
     field :created_by, :binary_id
 
     many_to_many :sheats, Sheat, join_through: "users_sheats", unique: true
+    many_to_many :tasks, Task, join_through: "users_tasks", unique: true
   end
 
   @required_fields ~w(

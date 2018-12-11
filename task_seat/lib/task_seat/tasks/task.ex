@@ -5,6 +5,7 @@ defmodule TaskSeat.Tasks.Task do
   alias TaskSeat.Tasks.Task
   alias TaskSeat.Tasks.Category
   alias TaskSeat.Tasks.Sheat
+  alias TaskSeat.Accounts.User
 
   schema "tasks" do
     field :title, :string
@@ -18,6 +19,7 @@ defmodule TaskSeat.Tasks.Task do
 
     belongs_to :category, Category
     belongs_to :sheat, Sheat
+    many_to_many :users, User, join_through: "users_tasks", unique: true
   end
 
   @required_fields ~w(
