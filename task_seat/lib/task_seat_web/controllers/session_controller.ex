@@ -6,6 +6,8 @@ defmodule TaskSeatWeb.SessionController do
   alias TaskSeat.Accounts.User.Guardian
   alias TaskSeat.Accounts.User.Auth
 
+  require Logger
+
   def new(conn, _opts) do
     changeset = Accounts.change_user(%User{})
     maybe_user = Guardian.Plug.current_resource(conn)
@@ -32,6 +34,9 @@ defmodule TaskSeatWeb.SessionController do
   end
 
   defp login_reply({:ok, user}, conn) do
+    Logger.info "###SessionController.login_reply###"
+    Logger.info "user"
+    Logger.info inspect(user)
     conn
     |> put_flash(:info, "ログインしました。")
     |> Guardian.Plug.sign_in(user)
