@@ -22,6 +22,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+config :task_seat, TaskSeat.Accounts.User.Guardian,
+  issuer: "task_seat",
+  secret_key: "z9r0C0bOX4r42oHrhwxewf8gmLvAWxfXkPzhOsNHCj9GQ7P9BEbxeYRtwMlv8//b"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

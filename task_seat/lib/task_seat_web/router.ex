@@ -13,10 +13,14 @@ defmodule TaskSeatWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", TaskSeatWeb do
+  scope "/", TaskSeatWeb, [as: :task_seat] do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", PageController, :home
+
+    get "/login", SessionController, :new
+    post "/login", SessionController, :login
+    post "/logout", SessionController, :logout
   end
 
   # Other scopes may use custom stacks.

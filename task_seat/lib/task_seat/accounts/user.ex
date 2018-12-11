@@ -2,6 +2,7 @@ defmodule TaskSeat.Accounts.User do
   use TaskSeat.Schema
   import Ecto.Changeset
 
+  alias Comeonin.Bcrypt
   alias TaskSeat.Accounts.User
   alias TaskSeat.Tasks.Sheat
   alias TaskSeat.Tasks.Task
@@ -30,6 +31,13 @@ defmodule TaskSeat.Accounts.User do
     |> cast(attrs, @required_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:email, name: :uq_user_email)
+    |> put_password_hash()
   end
+
+  defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, password: Bcrypt.hashpwsalt(password))
+  end
+
+  defp put_password_hash(changeset), do: changeset
 
 end

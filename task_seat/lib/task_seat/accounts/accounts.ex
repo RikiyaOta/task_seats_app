@@ -13,6 +13,10 @@ defmodule TaskSeat.Accounts do
     User.changeset(user, attrs)
   end
 
+  def get_user(user_id), do: Repo.get(User, user_id)
+
+  def get_user!(user_id), do: Repo.get!(User, user_id)
+
   def create_user(attrs) do
     %User{}
     |> User.changeset(attrs)
@@ -29,6 +33,10 @@ defmodule TaskSeat.Accounts do
   def change_system_account(%SystemAccount{} = system_account, attrs \\ %{}) do
     SystemAccount.changeset(system_account, attrs)
   end
+
+  def get_system_account(system_account_id), do: Repo.get(SystemAccount, system_account_id)
+
+  def get_system_account!(system_account_id), do: Repo.get!(SystemAccount, system_account_id)
 
   def create_system_account(attrs) do
     %SystemAccount{}
