@@ -3,6 +3,7 @@ defmodule TaskSeat.Accounts.User do
   import Ecto.Changeset
 
   alias TaskSeat.Accounts.User
+  alias TaskSeat.Tasks.Sheat
 
   schema "users" do
     field :name, :string
@@ -10,6 +11,8 @@ defmodule TaskSeat.Accounts.User do
     field :password, :string
     field :created_at, :utc_datetime
     field :created_by, :binary_id
+
+    many_to_many :sheats, Sheat, join_through: "users_sheats", unique: true
   end
 
   @required_fields ~w(
