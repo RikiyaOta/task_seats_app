@@ -1,11 +1,13 @@
 <h1>ホーム</h1>
 
 <%= if is_nil(@current_user) do %>
-  <%= link "ログイン", to: task_seat_session_path(@conn, :new), class: "btn btn-primary" %>
+  <p>こんにちは。ユーザー作成してログインして使ってな</p>
 <% else %>
-  <h2>name: <%= @current_user.name %></h2>
-  <h2>email: <%= @current_user.email %></h2>
-  <%= link "ログアウト", to: task_seat_session_path(@conn, :logout), method: :post, class: "btn btn-danger" %>
+  <p><%= @current_user.name %>さんの持っているタスクシートの一覧です。</p>
+  <ul class="list-group">
+    <%= for sheat <- @sheats do %>
+      <li class="list-group-item"><%= link sheat.name, to: "/" %></li>
+    <% end %>
+  </ul>
 <% end %>
-
 
