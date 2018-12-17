@@ -7,6 +7,7 @@ defmodule TaskSeat.Accounts do
   alias TaskSeat.Repo
   alias TaskSeat.Accounts.SystemAccount
   alias TaskSeat.Accounts.User
+  alias TaskSeat.Tasks.Sheat
 
   # User 
   def change_user(%User{} = user, attrs \\ %{}) do
@@ -20,6 +21,13 @@ defmodule TaskSeat.Accounts do
   def create_user(attrs) do
     %User{}
     |> User.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_user_with_associated_sheats(attrs) do
+    %User{}
+    |> User.changeset(attrs)
+    |> Ecto.Changeset.cast_assoc(:sheats, with: &Sheat.changeset/2)
     |> Repo.insert()
   end
 
@@ -37,6 +45,8 @@ defmodule TaskSeat.Accounts do
   def get_system_account(system_account_id), do: Repo.get(SystemAccount, system_account_id)
 
   def get_system_account!(system_account_id), do: Repo.get!(SystemAccount, system_account_id)
+
+  def get_first_system_account, do: SystemAccount |> Ecto.Query.first |> Repo.one()
 
   def create_system_account(attrs) do
     %SystemAccount{}
