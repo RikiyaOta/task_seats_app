@@ -39,8 +39,8 @@ ALTER TABLE public.users OWNER TO postgres;
 CREATE TABLE public.tasks(
 	id uuid NOT NULL,
 	title varchar(64) NOT NULL,
-	content text NOT NULL,
-	category_id uuid NOT NULL,
+	content text,
+	category_id uuid,
 	sheat_id uuid NOT NULL,
 	created_at timestamp with time zone NOT NULL,
 	created_by uuid NOT NULL,
