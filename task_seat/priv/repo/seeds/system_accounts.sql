@@ -9,7 +9,7 @@ INSERT INTO system_accounts
 )
 VALUES
 (
-    '00000000-0000-0000-0000-000000000001',
+    '00000000-0000-0000-0000-000000000000',
     'default_system_account_1',
     'foobar1@hoge.com',
     'password'
