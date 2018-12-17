@@ -40,6 +40,12 @@ defmodule TaskSeatWeb.Router do
     post "/logout", SessionController, :logout
   end
 
+  scope "/tasks", TaskSeatWeb.Tasks, [as: :task_seat_tasks] do
+    pipe_through [:browser, :auth, :ensure_auth]
+
+    get "/sheats/show/:sheat_id", SheatController, :show
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TaskSeatWeb do
   #   pipe_through :api

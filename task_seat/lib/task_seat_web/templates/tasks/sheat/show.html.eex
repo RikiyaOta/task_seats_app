@@ -1,0 +1,25 @@
+<h1>タスクシート詳細画面</h1>
+<p>シート名<%= @sheat.name %></p>
+<br />
+<%= if length(@sheat.tasks) == 0 do %>
+  <p>このシートにはタスクが存在しません。</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>タスク</th>
+        <th>緊急度</th>
+        <th>重要度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for task <- @sheat.tasks do %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.urgency %></td>
+          <td><%= task.importance %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
