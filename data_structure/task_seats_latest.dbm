@@ -62,11 +62,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="varchar" length="64"/>
 		<comment><![CDATA[タイトル]]></comment>
 	</column>
-	<column name="content" not-null="true">
+	<column name="content">
 		<type name="text" length="0"/>
 		<comment><![CDATA[内容]]></comment>
 	</column>
-	<column name="category_id" not-null="true">
+	<column name="category_id">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="sheat_id" not-null="true">
