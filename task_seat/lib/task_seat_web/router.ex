@@ -28,8 +28,11 @@ defmodule TaskSeatWeb.Router do
 
     get "/", PageController, :home
 
-    get "/login", SessionController, :new
+    get "/login",  SessionController, :new
     post "/login", SessionController, :login
+
+    get "/users/new",     UserController, :new
+    post "/users/create", UserController, :create
   end
 
   scope "/", TaskSeatWeb, [as: :task_seat] do
