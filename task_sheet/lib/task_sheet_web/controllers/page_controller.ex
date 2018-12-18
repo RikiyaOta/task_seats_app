@@ -11,11 +11,11 @@ defmodule TaskSheetWeb.PageController do
       |> assign(:current_user, nil)
       |> render("home.html")
     else
-      sheats_of_current_user = Tasks.get_sheats_of_user(current_user)
+      sheets_of_current_user = Tasks.get_sheets_of_user(current_user)
       conn
       |> assign(:conn, conn)
       |> assign(:current_user, current_user)
-      |> assign(:sheats, sheats_of_current_user)
+      |> assign(:sheets, sheets_of_current_user)
       |> render("home.html")
     end
   end

@@ -7,14 +7,14 @@ defmodule TaskSheet.Tasks.Sheet do
   alias TaskSheet.Tasks.Category
   alias TaskSheet.Tasks.Task
 
-  schema "sheats" do
+  schema "sheets" do
     field :name, :string
     field :created_at, :utc_datetime
     field :created_by, :binary_id
     field :modified_at, :utc_datetime
     field :modified_by, :binary_id
 
-    many_to_many :users, User, join_through: "users_sheats", unique: true
+    many_to_many :users, User, join_through: "users_sheets", unique: true
     has_many :categories, Category
     has_many :tasks, Task
   end
@@ -27,8 +27,8 @@ defmodule TaskSheet.Tasks.Sheet do
     modified_by
   )a
 
-  def changeset(%Sheet{} = sheat, attrs \\ %{}) do
-    sheat
+  def changeset(%Sheet{} = sheet, attrs \\ %{}) do
+    sheet
     |> cast(attrs, @required_fields)
     |> validate_required(@required_fields)
   end

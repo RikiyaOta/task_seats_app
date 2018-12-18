@@ -20,16 +20,16 @@ defmodule TaskSheetWeb.UserController do
   end
 
   #TODO
-  #ユーザー作成したら、デフォルトのsheatだけは作っておく必要がある。
+  #ユーザー作成したら、デフォルトのsheetだけは作っておく必要がある。
   def create(conn, %{"user" => %{"name" => name, "email" => email, "password" => password}}) do
     now = Timex.now
     system_account = Accounts.get_first_system_account()
 
-    params_with_default_sheats = %{
+    params_with_default_sheets = %{
       name: name,
       email: email,
       password: password,
-      sheats: [
+      sheets: [
         %{
           name: "最初のタスクシート",
           created_at: now,
@@ -42,7 +42,7 @@ defmodule TaskSheetWeb.UserController do
       created_by: system_account.id
     }
 
-    case Accounts.create_user_with_associated_sheats(params_with_default_sheats) do
+    case Accounts.create_user_with_associated_sheets(params_with_default_sheets) do
       {:ok, _} ->
         conn
         |> put_flash(:info, "ユーザー登録作成完了しました。")

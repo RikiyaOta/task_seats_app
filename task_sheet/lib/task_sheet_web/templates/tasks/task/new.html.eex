@@ -1,5 +1,5 @@
 <h1>タスク作成</h1>
-<p>現在のシート名: <%= @sheat.name %></p>
+<p>現在のシート名: <%= @sheet.name %></p>
 
 <%= form_for @changeset, @action, fn f -> %>
 

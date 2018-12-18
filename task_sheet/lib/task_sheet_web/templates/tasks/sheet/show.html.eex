@@ -1,8 +1,8 @@
 <h1>タスクシート詳細画面</h1>
-<p>シート名: <%= @sheat.name %></p>
+<p>シート名: <%= @sheet.name %></p>
 <br />
-<p>タスクの追加は<%= link "こちら", to: task_sheet_tasks_task_path(@conn, :new, @sheat.id) %>から</p>
-<%= if length(@sheat.tasks) == 0 do %>
+<p>タスクの追加は<%= link "こちら", to: task_sheet_tasks_task_path(@conn, :new, @sheet.id) %>から</p>
+<%= if length(@sheet.tasks) == 0 do %>
   <p>このシートにはタスクが存在しません。</p>
 <% else %>
   <table class="table">
@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= for task <- @sheat.tasks do %>
+      <%= for task <- @sheet.tasks do %>
         <tr>
           <td><%= link task.title, to: task_sheet_tasks_task_path(@conn, :show, task.id) %></td>
           <td><%= task.urgency %></td>

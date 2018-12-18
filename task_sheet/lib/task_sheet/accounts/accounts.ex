@@ -24,10 +24,10 @@ defmodule TaskSheet.Accounts do
     |> Repo.insert()
   end
 
-  def create_user_with_associated_sheats(attrs) do
+  def create_user_with_associated_sheets(attrs) do
     %User{}
     |> User.changeset(attrs)
-    |> Ecto.Changeset.cast_assoc(:sheats, with: &Sheet.changeset/2)
+    |> Ecto.Changeset.cast_assoc(:sheets, with: &Sheet.changeset/2)
     |> Repo.insert()
   end
 

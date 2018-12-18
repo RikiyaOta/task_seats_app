@@ -17,21 +17,21 @@ defmodule TaskSheetWeb.Tasks.TaskController do
     |> render("show.html")
   end
 
-  def new(conn, %{"sheat_id" => sheat_id}) do
+  def new(conn, %{"sheet_id" => sheet_id}) do
     changeset = Task.changeset(%Task{})
-    action = task_sheet_tasks_task_path(conn, :create, sheat_id)
-    sheat = Tasks.get_sheat!(sheat_id)
+    action = task_sheet_tasks_task_path(conn, :create, sheet_id)
+    sheet = Tasks.get_sheet!(sheet_id)
 
     conn
     |> assign(:conn, conn)
     |> assign(:changeset, changeset)
     |> assign(:action, action)
-    |> assign(:sheat, sheat)
+    |> assign(:sheet, sheet)
     |> render("new.html")
   end
 
-  def create(conn, %{"sheat_id" => sheat_id, "task" => %{"title" => title, "content" => content, "urgency" => urgency, "importance" => importance}}) do
-    sheat = Tasks.get_sheat_with_tasks(sheat_id)
+  def create(conn, %{"sheet_id" => sheet_id, "task" => %{"title" => title, "content" => content, "urgency" => urgency, "importance" => importance}}) do
+    sheet = Tasks.get_sheet_with_tasks(sheet_id)
     now = Timex.now
     current_user = Guardian.current_user(conn)
     task_params = %{
@@ -39,7 +39,7 @@ defmodule TaskSheetWeb.Tasks.TaskController do
       content: content,
       urgency: urgency,
       importance: importance,
-      sheat_id: sheat_id,
+      sheet_id: sheet_id,
       created_at: now,
       created_by: current_user.id,
       modified_at: now,
@@ -52,7 +52,7 @@ defmodule TaskSheetWeb.Tasks.TaskController do
         Logger.info inspect(result)
         conn
         |> put_flash(:info, "タスク作成完了しました。")
-        |> redirect(to: task_sheet_tasks_sheat_path(conn, :show, sheat.id))
+        |> redirect(to: task_sheet_tasks_sheet_path(conn, :show, sheet.id))
       {:error, %Ecto.Changeset{} = error} ->
         Logger.error "________[ERROR]________ TaskController.create"
         Logger.error inspect(error)
@@ -60,8 +60,8 @@ defmodule TaskSheetWeb.Tasks.TaskController do
         |> put_flash(:error, "タスク作成に失敗しました。")
         |> assign(:conn, conn)
         |> assign(:changeset, error)
-        |> assign(:action, task_sheet_tasks_task_path(conn, :create, sheat.id))
-        |> assign(:sheat, sheat)
+        |> assign(:action, task_sheet_tasks_task_path(conn, :create, sheet.id))
+        |> assign(:sheet, sheet)
         |> render("new.html")
     end
 

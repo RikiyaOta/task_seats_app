@@ -14,7 +14,7 @@ defmodule TaskSheet.Accounts.User do
     field :created_at, :utc_datetime
     field :created_by, :binary_id
 
-    many_to_many :sheats, Sheet, join_through: "users_sheats", unique: true
+    many_to_many :sheets, Sheet, join_through: "users_sheets", unique: true
     many_to_many :tasks, Task, join_through: "users_tasks", unique: true
   end
 
