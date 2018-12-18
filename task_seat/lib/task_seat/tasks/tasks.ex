@@ -7,7 +7,12 @@ defmodule TaskSeat.Tasks do
 
   alias TaskSeat.Repo
   alias TaskSeat.Accounts.User
+  alias TaskSeat.Tasks.Task
   alias TaskSeat.Tasks.Sheat
+
+  def get_sheat(id), do: Repo.get(Sheat, id)
+
+  def get_sheat!(id), do: Repo.get!(Sheat, id)
 
   def get_sheats_of_user(%User{} = user) do
     user
@@ -22,6 +27,35 @@ defmodule TaskSeat.Tasks do
       preload: [tasks: t]
 
     Repo.one(query)
+  end
+
+  def create_sheat(attrs \\ %{}) do
+    %Sheat{}
+    |> Sheat.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_sheat(%Sheat{} = sheat, attrs \\ %{}) do
+    sheat
+    |> Sheat.changeset()
+    |> Repo.update()
+  end
+
+
+  def get_task(task_id), do: Repo.get(Task, task_id)
+
+  def get_task!(task_id), do: Repo.get!(Task, task_id)
+
+  def create_task(params \\ %{}) do
+    %Task{}
+    |> Task.changeset(params)
+    |> Repo.insert()
+  end
+
+  def update_task(%Task{} = task, params \\ %{}) do
+    task
+    |> Task.changeset(params)
+    |> Repo.update()
   end
 
 end

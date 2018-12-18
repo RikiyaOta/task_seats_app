@@ -3,7 +3,7 @@ defmodule TaskSeatWeb.SessionController do
 
   alias TaskSeat.Accounts
   alias TaskSeat.Accounts.User
-  alias TaskSeat.Accounts.User.Guardian
+  alias TaskSeat.Accounts.Auth.Guardian
   alias TaskSeat.Accounts.User.Auth
 
   require Logger

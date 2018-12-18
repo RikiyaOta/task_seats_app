@@ -1,4 +1,4 @@
-defmodule TaskSeat.Accounts.User.Guardian do
+defmodule TaskSeat.Accounts.Auth.Guardian do
   use Guardian, otp_app: :task_seat
 
   require Logger
@@ -20,6 +20,17 @@ defmodule TaskSeat.Accounts.User.Guardian do
         Logger.info inspect(user)
         {:ok, user}
     end
+  end
+
+  def current_user(conn) do
+    Guardian.Plug.current_resource(conn)
+  end
+
+  def is_logged_in?(conn) do
+    conn
+    |> current_user()
+    |> is_nil()
+    |> Kernel.not()
   end
 
 end

@@ -43,7 +43,16 @@ defmodule TaskSeatWeb.Router do
   scope "/tasks", TaskSeatWeb.Tasks, [as: :task_seat_tasks] do
     pipe_through [:browser, :auth, :ensure_auth]
 
-    get "/sheats/show/:sheat_id", SheatController, :show
+    get "/sheat/show/:sheat_id",   SheatController, :show
+
+    get "/task/new/:sheat_id",     TaskController,  :new
+    post "/task/create/:sheat_id", TaskController,  :create
+
+    get "/task/show/:task_id",     TaskController,  :show
+    get "/task/new/:sheat_id",     TaskController,  :new
+    post "/task/create/:sheat_id", TaskController,  :create
+    get "/task/edit/:task_id",     TaskController,  :edit
+    put "/task/update/:task_id",  TaskController,  :update
   end
 
   # Other scopes may use custom stacks.

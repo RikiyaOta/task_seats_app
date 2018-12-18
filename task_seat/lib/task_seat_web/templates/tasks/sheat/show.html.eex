@@ -1,6 +1,7 @@
 <h1>タスクシート詳細画面</h1>
-<p>シート名<%= @sheat.name %></p>
+<p>シート名: <%= @sheat.name %></p>
 <br />
+<p>タスクの追加は<%= link "こちら", to: task_seat_tasks_task_path(@conn, :new, @sheat.id) %>から</p>
 <%= if length(@sheat.tasks) == 0 do %>
   <p>このシートにはタスクが存在しません。</p>
 <% else %>
@@ -10,14 +11,16 @@
         <th>タスク</th>
         <th>緊急度</th>
         <th>重要度</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <%= for task <- @sheat.tasks do %>
         <tr>
-          <td><%= task.title %></td>
+          <td><%= link task.title, to: task_seat_tasks_task_path(@conn, :show, task.id) %></td>
           <td><%= task.urgency %></td>
           <td><%= task.importance %></td>
+          <td><%= link "編集", to: task_seat_tasks_task_path(@conn, :edit, task.id), class: "btn btn-info" %></td>
         </tr>
       <% end %>
     </tbody>

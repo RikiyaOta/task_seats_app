@@ -1,7 +1,7 @@
 defmodule TaskSeatWeb.PageController do
   use TaskSeatWeb, :controller
 
-  alias TaskSeat.Accounts.User.Guardian
+  alias TaskSeat.Accounts.Auth.Guardian
   alias TaskSeat.Tasks
 
   def home(conn, _params) do

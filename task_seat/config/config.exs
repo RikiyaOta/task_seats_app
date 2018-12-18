@@ -22,7 +22,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
-config :task_seat, TaskSeat.Accounts.User.Guardian,
+config :task_seat, TaskSeat.Accounts.Auth.Guardian,
   issuer: "task_seat",
   secret_key: "3e7TgOocOBokcfC8rQBewQikc0M1Taqv05sSB3LY8jmh4u+b45chzRrGChgWYR3Q"
 

@@ -1,0 +1,33 @@
+<h1>タスク編集</h1>
+
+<%= form_for @changeset, @action, fn f -> %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :content, class: "control-label" %>
+    <%= textarea f, :content, class: "form-control" %>
+    <%= error_tag f, :content %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :urgency, class: "control-label" %>
+    <%= number_input f, :urgency, class: "form-control" %>
+    <%= error_tag f, :urgency %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :importance, class: "control-label" %>
+    <%= number_input f, :importance, class: "form-control" %>
+    <%= error_tag f, :importance %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

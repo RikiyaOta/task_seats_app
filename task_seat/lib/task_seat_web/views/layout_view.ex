@@ -1,7 +1,7 @@
 defmodule TaskSeatWeb.LayoutView do
   use TaskSeatWeb, :view
 
-  alias TaskSeat.Accounts.User.Guardian
+  alias TaskSeat.Accounts.Auth.Guardian
 
   def is_logged_in?(conn) do
     Guardian.Plug.authenticated?(conn)
