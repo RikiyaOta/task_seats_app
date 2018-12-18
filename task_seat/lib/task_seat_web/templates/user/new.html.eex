@@ -27,5 +27,5 @@
 
 <% end %>
 
-<p>すでにアカウントを持っている場合は<%= link "こちら", to: task_seat_session_path(@conn, :new) %>からログインしてください。</p>
+<p>すでにアカウントを持っている場合は<%= link "こちら", to: task_sheet_session_path(@conn, :new) %>からログインしてください。</p>
 

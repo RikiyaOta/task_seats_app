@@ -1,5 +1,5 @@
 defmodule TaskSheet.Repo do
-  use Ecto.Repo, otp_app: :task_seat
+  use Ecto.Repo, otp_app: :task_sheet
 
   @doc """
   Dynamically loads the repository url from the

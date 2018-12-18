@@ -28,7 +28,7 @@ defmodule TaskSheetWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/task_seat_web/templates",
+      use Phoenix.View, root: "lib/task_sheet_web/templates",
                         namespace: TaskSheetWeb
 
       # Import convenience functions from controllers

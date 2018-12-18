@@ -13,11 +13,11 @@ defmodule TaskSheetWeb.SessionController do
     maybe_user = Guardian.Plug.current_resource(conn)
     if maybe_user do
       conn
-      |> redirect(to: task_seat_page_path(conn, :home))
+      |> redirect(to: task_sheet_page_path(conn, :home))
     else
       conn
       |> assign(:changeset, changeset)
-      |> assign(:action, task_seat_session_path(conn, :login))
+      |> assign(:action, task_sheet_session_path(conn, :login))
       |> render("new.html")
     end
   end
@@ -30,7 +30,7 @@ defmodule TaskSheetWeb.SessionController do
   def logout(conn, _) do
     conn
     |> Guardian.Plug.sign_out()
-    |> redirect(to: task_seat_session_path(conn, :login))
+    |> redirect(to: task_sheet_session_path(conn, :login))
   end
 
   defp login_reply({:ok, user}, conn) do
@@ -40,13 +40,13 @@ defmodule TaskSheetWeb.SessionController do
     conn
     |> put_flash(:info, "ログインしました。")
     |> Guardian.Plug.sign_in(user)
-    |> redirect(to: task_seat_page_path(conn, :home))
+    |> redirect(to: task_sheet_page_path(conn, :home))
   end
 
   defp login_reply({:error, reason}, conn) do
     conn
     |> put_flash(:error, to_string(reason))
-    |> redirect(to: task_seat_session_path(conn, :new))
+    |> redirect(to: task_sheet_session_path(conn, :new))
   end
 
 end

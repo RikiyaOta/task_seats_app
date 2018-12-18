@@ -23,19 +23,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <%= link "タスクシートアプリ", to: task_seat_page_path(@conn, :home), class: "navbar-brand" %>
+              <%= link "タスクシートアプリ", to: task_sheet_page_path(@conn, :home), class: "navbar-brand" %>
             </div>
             <div class="collapse navbar-collapse" id="navbarEexample4">
                 <%= if is_logged_in?(@conn) do %>
                   <ul class="nav navbar-nav">
                     <%= link "タスク一覧", to: "/", class: "btn btn-default navbar-btn" %>
                   </ul>
-                  <%= link "ログアウト", to: task_seat_session_path(@conn, :logout), method: :post, class: "btn navbar-right btn-danger navbar-btn" %>
+                  <%= link "ログアウト", to: task_sheet_session_path(@conn, :logout), method: :post, class: "btn navbar-right btn-danger navbar-btn" %>
                   <p class="navbar-text navbar-right">こんにちは <%= current_user(@conn).name %> さん 　 </p>
                 <% else %>
                   <ul class="nav navbar-nav">
-                    <%= button "ログイン", to: task_seat_session_path(@conn, :new), method: :get, class: "btn btn-default navbar-btn" %>
-                    <%= button "アカウント作成", to: task_seat_user_path(@conn, :new), method: :get, class: "btn btn-default navbar-btn" %>
+                    <%= button "ログイン", to: task_sheet_session_path(@conn, :new), method: :get, class: "btn btn-default navbar-btn" %>
+                    <%= button "アカウント作成", to: task_sheet_user_path(@conn, :new), method: :get, class: "btn btn-default navbar-btn" %>
                   </ul>
                 <% end %>
             </div>

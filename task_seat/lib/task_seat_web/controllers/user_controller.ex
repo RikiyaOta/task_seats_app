@@ -10,7 +10,7 @@ defmodule TaskSheetWeb.UserController do
 
   def new(conn, _params) do
     changeset = Accounts.change_user(%User{}, %{})
-    action = task_seat_user_path(conn, :create)
+    action = task_sheet_user_path(conn, :create)
 
     conn
     |> assign(:conn, conn)
@@ -46,14 +46,14 @@ defmodule TaskSheetWeb.UserController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "ユーザー登録作成完了しました。")
-        |> redirect(to: task_seat_session_path(conn, :new))
+        |> redirect(to: task_sheet_session_path(conn, :new))
       {:error, %Ecto.Changeset{} = error} ->
         Logger.error inspect(error)
         conn
         |> put_flash(:info, "ユーザー登録作成に失敗しました。")
         |> assign(:conn, conn)
         |> assign(:changeset, error)
-        |> assign(:action, task_seat_user_path(conn, :new))
+        |> assign(:action, task_sheet_user_path(conn, :new))
         |> render("new.html")
     end
 

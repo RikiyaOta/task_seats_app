@@ -6,7 +6,7 @@
   <p><%= @current_user.name %>さんの持っているタスクシートの一覧です。</p>
   <ul class="list-group">
     <%= for sheat <- @sheats do %>
-      <li class="list-group-item"><%= link sheat.name, to: task_seat_tasks_sheat_path(@conn, :show, sheat.id) %></li>
+      <li class="list-group-item"><%= link sheat.name, to: task_sheet_tasks_sheat_path(@conn, :show, sheat.id) %></li>
     <% end %>
   </ul>
 <% end %>

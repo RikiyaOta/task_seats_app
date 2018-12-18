@@ -19,7 +19,7 @@ defmodule TaskSheetWeb.Tasks.TaskController do
 
   def new(conn, %{"sheat_id" => sheat_id}) do
     changeset = Task.changeset(%Task{})
-    action = task_seat_tasks_task_path(conn, :create, sheat_id)
+    action = task_sheet_tasks_task_path(conn, :create, sheat_id)
     sheat = Tasks.get_sheat!(sheat_id)
 
     conn
@@ -52,7 +52,7 @@ defmodule TaskSheetWeb.Tasks.TaskController do
         Logger.info inspect(result)
         conn
         |> put_flash(:info, "タスク作成完了しました。")
-        |> redirect(to: task_seat_tasks_sheat_path(conn, :show, sheat.id))
+        |> redirect(to: task_sheet_tasks_sheat_path(conn, :show, sheat.id))
       {:error, %Ecto.Changeset{} = error} ->
         Logger.error "________[ERROR]________ TaskController.create"
         Logger.error inspect(error)
@@ -60,7 +60,7 @@ defmodule TaskSheetWeb.Tasks.TaskController do
         |> put_flash(:error, "タスク作成に失敗しました。")
         |> assign(:conn, conn)
         |> assign(:changeset, error)
-        |> assign(:action, task_seat_tasks_task_path(conn, :create, sheat.id))
+        |> assign(:action, task_sheet_tasks_task_path(conn, :create, sheat.id))
         |> assign(:sheat, sheat)
         |> render("new.html")
     end
@@ -69,7 +69,7 @@ defmodule TaskSheetWeb.Tasks.TaskController do
 
   def edit(conn, %{"task_id" => task_id}) do
     changeset = Tasks.get_task!(task_id) |> Task.changeset()
-    action    = task_seat_tasks_task_path(conn, :update, task_id)
+    action    = task_sheet_tasks_task_path(conn, :update, task_id)
     conn
     |> assign(:changeset, changeset)
     |> assign(:action, action)
@@ -95,14 +95,14 @@ defmodule TaskSheetWeb.Tasks.TaskController do
         Logger.info inspect(updated_task)
         conn
         |> put_flash(:info, "タスクを更新しました。")
-        |> redirect(to: task_seat_tasks_task_path(conn, :show, task_id))
+        |> redirect(to: task_sheet_tasks_task_path(conn, :show, task_id))
       {:error, %Ecto.Changeset{} = error} ->
         Logger.error "________[ERROR]________ TaskController.update"
         Logger.error inspect(error)
         conn
         |> put_flash(:error, "タスクの更新でエラーが発生しました。")
         |> assign(:changeset, error)
-        |> assign(:action, task_seat_tasks_task_path(conn, :update, task_id))
+        |> assign(:action, task_sheet_tasks_task_path(conn, :update, task_id))
         |> render("edit.html")
     end
   end

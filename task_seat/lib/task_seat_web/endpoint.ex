@@ -1,5 +1,5 @@
 defmodule TaskSheetWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :task_seat
+  use Phoenix.Endpoint, otp_app: :task_sheet
 
   socket "/socket", TaskSheetWeb.UserSocket
 
@@ -8,7 +8,7 @@ defmodule TaskSheetWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :task_seat, gzip: false,
+    at: "/", from: :task_sheet, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -34,7 +34,7 @@ defmodule TaskSheetWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_task_seat_key",
+    key: "_task_sheet_key",
     signing_salt: "TZb6uvET"
 
   plug TaskSheetWeb.Router

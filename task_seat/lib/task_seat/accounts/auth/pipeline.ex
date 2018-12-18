@@ -1,6 +1,6 @@
 defmodule TaskSheet.Accounts.User.Pipeline do
   use Guardian.Plug.Pipeline,
-    otp_app: :task_seat,
+    otp_app: :task_sheet,
     error_handler: TaskSheet.Accounts.User.ErrorHandler,
     module: TaskSheet.Accounts.Auth.Guardian
 

@@ -23,7 +23,7 @@ defmodule TaskSheetWeb.Router do
     plug Guardian.Plug.EnsureAuthenticated
   end
 
-  scope "/", TaskSheetWeb, [as: :task_seat] do
+  scope "/", TaskSheetWeb, [as: :task_sheet] do
     pipe_through [:browser, :auth]
 
     get "/", PageController, :home
@@ -35,12 +35,12 @@ defmodule TaskSheetWeb.Router do
     post "/users/create", UserController, :create
   end
 
-  scope "/", TaskSheetWeb, [as: :task_seat] do
+  scope "/", TaskSheetWeb, [as: :task_sheet] do
     pipe_through [:browser, :auth, :ensure_auth]
     post "/logout", SessionController, :logout
   end
 
-  scope "/tasks", TaskSheetWeb.Tasks, [as: :task_seat_tasks] do
+  scope "/tasks", TaskSheetWeb.Tasks, [as: :task_sheet_tasks] do
     pipe_through [:browser, :auth, :ensure_auth]
 
     get "/sheat/show/:sheat_id",   SheatController, :show

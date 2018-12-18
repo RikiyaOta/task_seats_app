@@ -1,5 +1,5 @@
 defmodule TaskSheet.Accounts.Auth.Guardian do
-  use Guardian, otp_app: :task_seat
+  use Guardian, otp_app: :task_sheet
 
   require Logger
 

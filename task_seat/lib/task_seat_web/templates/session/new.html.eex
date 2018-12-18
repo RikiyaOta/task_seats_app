@@ -20,4 +20,4 @@
 
 <% end %>
 
-<p>アカウントを持っていない場合は<%= link "こちら", to: task_seat_user_path(@conn, :new) %>からアカウントを作成してください。</p>
+<p>アカウントを持っていない場合は<%= link "こちら", to: task_sheet_user_path(@conn, :new) %>からアカウントを作成してください。</p>
