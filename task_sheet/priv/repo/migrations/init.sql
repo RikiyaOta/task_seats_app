@@ -7,11 +7,11 @@
 
 -- Database creation must be done outside a multicommand file.
 -- These commands were put in this file only as a convenience.
--- -- object: task_seats_app | type: DATABASE --
--- -- DROP DATABASE IF EXISTS task_seats_app;
--- CREATE DATABASE task_seats_app;
+-- -- object: task_sheet_app | type: DATABASE --
+-- -- DROP DATABASE IF EXISTS task_sheet_app;
+-- CREATE DATABASE task_sheet_app;
 -- -- ddl-end --
--- COMMENT ON DATABASE task_seats_app IS 'タスクシートアプリ';
+-- COMMENT ON DATABASE task_sheet_app IS 'タスクシートアプリ';
 -- -- ddl-end --
 -- 
 
@@ -41,7 +41,7 @@ CREATE TABLE public.tasks(
 	title varchar(64) NOT NULL,
 	content text,
 	category_id uuid,
-	sheat_id uuid NOT NULL,
+	sheet_id uuid NOT NULL,
 	created_at timestamp with time zone NOT NULL,
 	created_by uuid NOT NULL,
 	modified_at timestamp with time zone NOT NULL,
@@ -73,12 +73,12 @@ CREATE TABLE public.categories(
 	id uuid NOT NULL,
 	name varchar(64) NOT NULL,
 	color varchar(32) NOT NULL,
-	sheat_id uuid NOT NULL,
+	sheet_id uuid NOT NULL,
 	created_at timestamp with time zone NOT NULL,
 	created_by uuid NOT NULL,
 	modified_at timestamp with time zone NOT NULL,
 	modified_by uuid NOT NULL,
-	CONSTRAINT task_types_pk PRIMARY KEY (id)
+	CONSTRAINT categories_pk PRIMARY KEY (id)
 
 );
 -- ddl-end --
@@ -86,41 +86,41 @@ COMMENT ON TABLE public.categories IS 'タスクのカテゴリー';
 -- ddl-end --
 COMMENT ON COLUMN public.categories.name IS 'タイプ名';
 -- ddl-end --
-COMMENT ON COLUMN public.categories.sheat_id IS 'シートID';
+COMMENT ON COLUMN public.categories.sheet_id IS 'シートID';
 -- ddl-end --
 ALTER TABLE public.categories OWNER TO postgres;
 -- ddl-end --
 
--- object: public.sheats | type: TABLE --
--- DROP TABLE IF EXISTS public.sheats CASCADE;
-CREATE TABLE public.sheats(
+-- object: public.sheets | type: TABLE --
+-- DROP TABLE IF EXISTS public.sheets CASCADE;
+CREATE TABLE public.sheets(
 	id uuid NOT NULL,
 	name varchar(64) NOT NULL,
 	created_at timestamp with time zone NOT NULL,
 	created_by uuid NOT NULL,
 	modified_at timestamp with time zone NOT NULL,
 	modified_by uuid NOT NULL,
-	CONSTRAINT sheats_pk PRIMARY KEY (id)
+	CONSTRAINT sheets_pk PRIMARY KEY (id)
 
 );
 -- ddl-end --
-COMMENT ON TABLE public.sheats IS 'シート。ユーザーが複数のシートを共有できるようにしたい。';
+COMMENT ON TABLE public.sheets IS 'シート。ユーザーが複数のシートを共有できるようにしたい。';
 -- ddl-end --
-ALTER TABLE public.sheats OWNER TO postgres;
+ALTER TABLE public.sheets OWNER TO postgres;
 -- ddl-end --
 
--- object: public.users_sheats | type: TABLE --
--- DROP TABLE IF EXISTS public.users_sheats CASCADE;
-CREATE TABLE public.users_sheats(
+-- object: public.users_sheets | type: TABLE --
+-- DROP TABLE IF EXISTS public.users_sheets CASCADE;
+CREATE TABLE public.users_sheets(
 	user_id uuid NOT NULL,
-	sheat_id uuid NOT NULL,
-	CONSTRAINT uq_users_sheats UNIQUE (user_id,sheat_id)
+	sheet_id uuid NOT NULL,
+	CONSTRAINT uq_users_sheets UNIQUE (user_id,sheet_id)
 
 );
 -- ddl-end --
-COMMENT ON TABLE public.users_sheats IS 'ユーザー:シート＝n:n';
+COMMENT ON TABLE public.users_sheets IS 'ユーザー:シート＝n:n';
 -- ddl-end --
-ALTER TABLE public.users_sheats OWNER TO postgres;
+ALTER TABLE public.users_sheets OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.system_accounts | type: TABLE --
@@ -159,31 +159,31 @@ REFERENCES public.categories (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: fk_sheats | type: CONSTRAINT --
--- ALTER TABLE public.tasks DROP CONSTRAINT IF EXISTS fk_sheats CASCADE;
-ALTER TABLE public.tasks ADD CONSTRAINT fk_sheats FOREIGN KEY (sheat_id)
-REFERENCES public.sheats (id) MATCH FULL
+-- object: fk_sheets | type: CONSTRAINT --
+-- ALTER TABLE public.tasks DROP CONSTRAINT IF EXISTS fk_sheets CASCADE;
+ALTER TABLE public.tasks ADD CONSTRAINT fk_sheets FOREIGN KEY (sheet_id)
+REFERENCES public.sheets (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: fk_sheats | type: CONSTRAINT --
--- ALTER TABLE public.categories DROP CONSTRAINT IF EXISTS fk_sheats CASCADE;
-ALTER TABLE public.categories ADD CONSTRAINT fk_sheats FOREIGN KEY (sheat_id)
-REFERENCES public.sheats (id) MATCH FULL
+-- object: fk_sheets | type: CONSTRAINT --
+-- ALTER TABLE public.categories DROP CONSTRAINT IF EXISTS fk_sheets CASCADE;
+ALTER TABLE public.categories ADD CONSTRAINT fk_sheets FOREIGN KEY (sheet_id)
+REFERENCES public.sheets (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: fk_users | type: CONSTRAINT --
--- ALTER TABLE public.users_sheats DROP CONSTRAINT IF EXISTS fk_users CASCADE;
-ALTER TABLE public.users_sheats ADD CONSTRAINT fk_users FOREIGN KEY (user_id)
+-- ALTER TABLE public.users_sheets DROP CONSTRAINT IF EXISTS fk_users CASCADE;
+ALTER TABLE public.users_sheets ADD CONSTRAINT fk_users FOREIGN KEY (user_id)
 REFERENCES public.users (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: fk_sheats | type: CONSTRAINT --
--- ALTER TABLE public.users_sheats DROP CONSTRAINT IF EXISTS fk_sheats CASCADE;
-ALTER TABLE public.users_sheats ADD CONSTRAINT fk_sheats FOREIGN KEY (sheat_id)
-REFERENCES public.sheats (id) MATCH FULL
+-- object: fk_sheets | type: CONSTRAINT --
+-- ALTER TABLE public.users_sheets DROP CONSTRAINT IF EXISTS fk_sheets CASCADE;
+ALTER TABLE public.users_sheets ADD CONSTRAINT fk_sheets FOREIGN KEY (sheet_id)
+REFERENCES public.sheets (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 

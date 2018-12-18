@@ -5,7 +5,7 @@ INSERT INTO categories
     id,
     name,
     color,
-    sheat_id,
+    sheet_id,
     created_at,
     created_by,
     modified_at,

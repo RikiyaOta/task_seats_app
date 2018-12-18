@@ -1,9 +1,9 @@
-ALTER TABLE users_sheats DISABLE TRIGGER ALL;
+ALTER TABLE users_sheets DISABLE TRIGGER ALL;
 
-INSERT INTO users_sheats
+INSERT INTO users_sheets
 (
     user_id,
-    sheat_id
+    sheet_id
 )
 VALUES
 (
@@ -11,4 +11,4 @@ VALUES
     '00000000-0000-0000-0000-000000000001'
 );
 
-ALTER TABLE users_sheats ENABLE TRIGGER ALL;
+ALTER TABLE users_sheets ENABLE TRIGGER ALL;

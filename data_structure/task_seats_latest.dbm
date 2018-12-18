@@ -3,9 +3,9 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.1" last-position="366,362" last-zoom="1"
+<dbmodel pgmodeler-ver="0.9.1" last-position="50,229" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
-<database name="task_seats_app" is-template="false" allow-conns="true">
+<database name="task_sheet_app" is-template="false" allow-conns="true">
 	<comment><![CDATA[タスクシートアプリ]]></comment>
 </database>
 
@@ -69,7 +69,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="category_id">
 		<type name="uuid" length="0"/>
 	</column>
-	<column name="sheat_id" not-null="true">
+	<column name="sheet_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="created_at" not-null="true">
@@ -118,7 +118,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="color" not-null="true">
 		<type name="varchar" length="32"/>
 	</column>
-	<column name="sheat_id" not-null="true">
+	<column name="sheet_id" not-null="true">
 		<type name="uuid" length="0"/>
 		<comment><![CDATA[シートID]]></comment>
 	</column>
@@ -134,12 +134,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="modified_by" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<constraint name="task_types_pk" type="pk-constr" table="public.categories">
+	<constraint name="categories_pk" type="pk-constr" table="public.categories">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="sheats">
+<table name="sheets">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<comment><![CDATA[シート。ユーザーが複数のシートを共有できるようにしたい。]]></comment>
@@ -162,12 +162,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="modified_by" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<constraint name="sheats_pk" type="pk-constr" table="public.sheats">
+	<constraint name="sheets_pk" type="pk-constr" table="public.sheets">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="users_sheats">
+<table name="users_sheets">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<comment><![CDATA[ユーザー:シート＝n:n]]></comment>
@@ -175,11 +175,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="user_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<column name="sheat_id" not-null="true">
+	<column name="sheet_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<constraint name="uq_users_sheats" type="uq-constr" table="public.users_sheats">
-		<columns names="user_id,sheat_id" ref-type="src-columns"/>
+	<constraint name="uq_users_sheets" type="uq-constr" table="public.users_sheets">
+		<columns names="user_id,sheet_id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -230,27 +230,27 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="fk_sheats" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheats" table="public.tasks">
-	<columns names="sheat_id" ref-type="src-columns"/>
+<constraint name="fk_sheets" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheets" table="public.tasks">
+	<columns names="sheet_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="fk_sheats" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheats" table="public.categories">
-	<columns names="sheat_id" ref-type="src-columns"/>
+<constraint name="fk_sheets" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheets" table="public.categories">
+	<columns names="sheet_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="fk_users" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.users" table="public.users_sheats">
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.users" table="public.users_sheets">
 	<columns names="user_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="fk_sheats" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheats" table="public.users_sheats">
-	<columns names="sheat_id" ref-type="src-columns"/>
+<constraint name="fk_sheets" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.sheets" table="public.users_sheets">
+	<columns names="sheet_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
@@ -272,23 +272,23 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_users_sheats_users" type="relfk"
-	 src-table="public.users_sheats"
+	 src-table="public.users_sheets"
 	 dst-table="public.users" reference-fk="fk_users"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_users_sheats_sheats" type="relfk"
-	 src-table="public.users_sheats"
-	 dst-table="public.sheats" reference-fk="fk_sheats"
+	 src-table="public.users_sheets"
+	 dst-table="public.sheets" reference-fk="fk_sheets"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_task_types_sheats" type="relfk"
 	 src-table="public.categories"
-	 dst-table="public.sheats" reference-fk="fk_sheats"
+	 dst-table="public.sheets" reference-fk="fk_sheets"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_tasks_sheats" type="relfk"
 	 src-table="public.tasks"
-	 dst-table="public.sheats" reference-fk="fk_sheats"
+	 dst-table="public.sheets" reference-fk="fk_sheets"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_users_tasks_users" type="relfk"
@@ -302,4 +302,3 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
-

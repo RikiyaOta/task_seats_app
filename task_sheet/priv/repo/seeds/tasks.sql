@@ -6,7 +6,7 @@ INSERT INTO tasks
     title,
     content,
     category_id,
-    sheat_id,
+    sheet_id,
     created_at,
     created_by,
     modified_at,
