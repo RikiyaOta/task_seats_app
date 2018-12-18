@@ -1,12 +1,12 @@
-defmodule TaskSeatWeb.UserController do
-  use TaskSeatWeb, :controller
+defmodule TaskSheetWeb.UserController do
+  use TaskSheetWeb, :controller
 
   use Timex
   require Logger
 
-  alias TaskSeat.Accounts
-  alias TaskSeat.Accounts.User
-  alias TaskSeat.Tasks.Sheat
+  alias TaskSheet.Accounts
+  alias TaskSheet.Accounts.User
+  alias TaskSheet.Tasks.Sheat
 
   def new(conn, _params) do
     changeset = Accounts.change_user(%User{}, %{})

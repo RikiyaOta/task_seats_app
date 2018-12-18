@@ -1,10 +1,10 @@
-defmodule TaskSeatWeb.SessionController do
-  use TaskSeatWeb, :controller
+defmodule TaskSheetWeb.SessionController do
+  use TaskSheetWeb, :controller
 
-  alias TaskSeat.Accounts
-  alias TaskSeat.Accounts.User
-  alias TaskSeat.Accounts.Auth.Guardian
-  alias TaskSeat.Accounts.User.Auth
+  alias TaskSheet.Accounts
+  alias TaskSheet.Accounts.User
+  alias TaskSheet.Accounts.Auth.Guardian
+  alias TaskSheet.Accounts.User.Auth
 
   require Logger
 

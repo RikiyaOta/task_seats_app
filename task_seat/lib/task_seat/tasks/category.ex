@@ -1,10 +1,10 @@
-defmodule TaskSeat.Tasks.Category do
-  use TaskSeat.Schema
+defmodule TaskSheet.Tasks.Category do
+  use TaskSheet.Schema
   import Ecto.Changeset
 
-  alias TaskSeat.Tasks.Category
-  alias TaskSeat.Tasks.Sheat
-  alias TaskSeat.Tasks.Task
+  alias TaskSheet.Tasks.Category
+  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Task
 
   schema "categories" do
     field :name, :string

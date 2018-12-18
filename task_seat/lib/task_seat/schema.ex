@@ -1,4 +1,4 @@
-defmodule TaskSeat.Schema do
+defmodule TaskSheet.Schema do
   use Ecto.Schema
 
   defmacro __using__(_) do

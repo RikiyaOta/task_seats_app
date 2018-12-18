@@ -1,3 +1,3 @@
-defmodule TaskSeatWeb.Tasks.SheatView do
-  use TaskSeatWeb, :view
+defmodule TaskSheetWeb.Tasks.SheatView do
+  use TaskSheetWeb, :view
 end

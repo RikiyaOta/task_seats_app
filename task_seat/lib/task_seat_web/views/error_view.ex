@@ -1,5 +1,5 @@
-defmodule TaskSeatWeb.ErrorView do
-  use TaskSeatWeb, :view
+defmodule TaskSheetWeb.ErrorView do
+  use TaskSheetWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

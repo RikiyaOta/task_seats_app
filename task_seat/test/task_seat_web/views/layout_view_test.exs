@@ -1,3 +1,3 @@
-defmodule TaskSeatWeb.LayoutViewTest do
-  use TaskSeatWeb.ConnCase, async: true
+defmodule TaskSheetWeb.LayoutViewTest do
+  use TaskSheetWeb.ConnCase, async: true
 end

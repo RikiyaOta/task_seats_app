@@ -1,11 +1,11 @@
-defmodule TaskSeat.Accounts.User.Auth do
+defmodule TaskSheet.Accounts.User.Auth do
   import Ecto.Query
 
   require Logger
 
   alias Comeonin.Bcrypt
-  alias TaskSeat.Repo
-  alias TaskSeat.Accounts.User
+  alias TaskSheet.Repo
+  alias TaskSheet.Accounts.User
 
   def authenticate_user(email, plain_text_password) do
     Logger.info "###authenticate_user###"

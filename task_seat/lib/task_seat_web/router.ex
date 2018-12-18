@@ -1,5 +1,5 @@
-defmodule TaskSeatWeb.Router do
-  use TaskSeatWeb, :router
+defmodule TaskSheetWeb.Router do
+  use TaskSheetWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -15,7 +15,7 @@ defmodule TaskSeatWeb.Router do
 
   # Our pipeline implements "maybe" authenticated. We'll use the `:ensure_auth` below for when we need to make sure someone is logged in.
   pipeline :auth do
-    plug TaskSeat.Accounts.User.Pipeline
+    plug TaskSheet.Accounts.User.Pipeline
   end
 
   # We use ensure_auth to fail if there is no one logged in
@@ -23,7 +23,7 @@ defmodule TaskSeatWeb.Router do
     plug Guardian.Plug.EnsureAuthenticated
   end
 
-  scope "/", TaskSeatWeb, [as: :task_seat] do
+  scope "/", TaskSheetWeb, [as: :task_seat] do
     pipe_through [:browser, :auth]
 
     get "/", PageController, :home
@@ -35,12 +35,12 @@ defmodule TaskSeatWeb.Router do
     post "/users/create", UserController, :create
   end
 
-  scope "/", TaskSeatWeb, [as: :task_seat] do
+  scope "/", TaskSheetWeb, [as: :task_seat] do
     pipe_through [:browser, :auth, :ensure_auth]
     post "/logout", SessionController, :logout
   end
 
-  scope "/tasks", TaskSeatWeb.Tasks, [as: :task_seat_tasks] do
+  scope "/tasks", TaskSheetWeb.Tasks, [as: :task_seat_tasks] do
     pipe_through [:browser, :auth, :ensure_auth]
 
     get "/sheat/show/:sheat_id",   SheatController, :show
@@ -56,7 +56,7 @@ defmodule TaskSeatWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", TaskSeatWeb do
+  # scope "/api", TaskSheetWeb do
   #   pipe_through :api
   # end
 end

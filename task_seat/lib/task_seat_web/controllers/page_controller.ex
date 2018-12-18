@@ -1,8 +1,8 @@
-defmodule TaskSeatWeb.PageController do
-  use TaskSeatWeb, :controller
+defmodule TaskSheetWeb.PageController do
+  use TaskSheetWeb, :controller
 
-  alias TaskSeat.Accounts.Auth.Guardian
-  alias TaskSeat.Tasks
+  alias TaskSheet.Accounts.Auth.Guardian
+  alias TaskSheet.Tasks
 
   def home(conn, _params) do
     current_user = Guardian.Plug.current_resource(conn)

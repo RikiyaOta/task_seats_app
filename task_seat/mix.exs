@@ -1,4 +1,4 @@
-defmodule TaskSeat.Mixfile do
+defmodule TaskSheet.Mixfile do
   use Mix.Project
 
   def project do
@@ -19,7 +19,7 @@ defmodule TaskSeat.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {TaskSeat.Application, []},
+      mod: {TaskSheet.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

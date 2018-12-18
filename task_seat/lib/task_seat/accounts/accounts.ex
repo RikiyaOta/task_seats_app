@@ -1,13 +1,13 @@
-defmodule TaskSeat.Accounts do
+defmodule TaskSheet.Accounts do
   @moduledoc """
     This module provide public API for Accounts context.
   """
 
   import Ecto.Query
-  alias TaskSeat.Repo
-  alias TaskSeat.Accounts.SystemAccount
-  alias TaskSeat.Accounts.User
-  alias TaskSeat.Tasks.Sheat
+  alias TaskSheet.Repo
+  alias TaskSheet.Accounts.SystemAccount
+  alias TaskSheet.Accounts.User
+  alias TaskSheet.Tasks.Sheat
 
   # User 
   def change_user(%User{} = user, attrs \\ %{}) do

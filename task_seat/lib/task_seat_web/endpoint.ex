@@ -1,7 +1,7 @@
-defmodule TaskSeatWeb.Endpoint do
+defmodule TaskSheetWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :task_seat
 
-  socket "/socket", TaskSeatWeb.UserSocket
+  socket "/socket", TaskSheetWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -37,7 +37,7 @@ defmodule TaskSeatWeb.Endpoint do
     key: "_task_seat_key",
     signing_salt: "TZb6uvET"
 
-  plug TaskSeatWeb.Router
+  plug TaskSheetWeb.Router
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

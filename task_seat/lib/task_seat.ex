@@ -1,6 +1,6 @@
-defmodule TaskSeat do
+defmodule TaskSheet do
   @moduledoc """
-  TaskSeat keeps the contexts that define your domain
+  TaskSheet keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

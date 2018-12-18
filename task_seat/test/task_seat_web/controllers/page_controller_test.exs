@@ -1,5 +1,5 @@
-defmodule TaskSeatWeb.PageControllerTest do
-  use TaskSeatWeb.ConnCase
+defmodule TaskSheetWeb.PageControllerTest do
+  use TaskSheetWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

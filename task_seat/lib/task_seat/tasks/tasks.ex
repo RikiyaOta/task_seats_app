@@ -1,14 +1,14 @@
-defmodule TaskSeat.Tasks do
+defmodule TaskSheet.Tasks do
   @moduledoc """
     This module provide public API for Tasks context
   """
 
   import Ecto.Query
 
-  alias TaskSeat.Repo
-  alias TaskSeat.Accounts.User
-  alias TaskSeat.Tasks.Task
-  alias TaskSeat.Tasks.Sheat
+  alias TaskSheet.Repo
+  alias TaskSheet.Accounts.User
+  alias TaskSheet.Tasks.Task
+  alias TaskSheet.Tasks.Sheat
 
   def get_sheat(id), do: Repo.get(Sheat, id)
 

@@ -1,8 +1,8 @@
-defmodule TaskSeat.Accounts.SystemAccount do
-  use TaskSeat.Schema
+defmodule TaskSheet.Accounts.SystemAccount do
+  use TaskSheet.Schema
   import Ecto.Changeset
   
-  alias TaskSeat.Accounts.SystemAccount
+  alias TaskSheet.Accounts.SystemAccount
 
   schema "system_accounts" do
     field :name, :string

@@ -5,13 +5,13 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     TaskSeat.Repo.insert!(%TaskSeat.SomeSchema{})
+#     TaskSheet.Repo.insert!(%TaskSheet.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-defmodule TaskSeat.Repo.DataSeeder do
-  alias TaskSeat.Repo
+defmodule TaskSheet.Repo.DataSeeder do
+  alias TaskSheet.Repo
 
   def main do
     File.cd!("priv/repo/seeds")
@@ -26,4 +26,4 @@ defmodule TaskSeat.Repo.DataSeeder do
 
 end
 
-TaskSeat.Repo.DataSeeder.main()
+TaskSheet.Repo.DataSeeder.main()

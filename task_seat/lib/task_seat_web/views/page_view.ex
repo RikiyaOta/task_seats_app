@@ -1,3 +1,3 @@
-defmodule TaskSeatWeb.PageView do
-  use TaskSeatWeb, :view
+defmodule TaskSheetWeb.PageView do
+  use TaskSheetWeb, :view
 end

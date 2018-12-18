@@ -1,9 +1,9 @@
-defmodule TaskSeat.Accounts.Auth.Guardian do
+defmodule TaskSheet.Accounts.Auth.Guardian do
   use Guardian, otp_app: :task_seat
 
   require Logger
 
-  alias TaskSeat.Accounts
+  alias TaskSheet.Accounts
 
   def subject_for_token(user, _claims) do
     {:ok, to_string(user.id)}

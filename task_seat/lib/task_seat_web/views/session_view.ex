@@ -1,3 +1,3 @@
-defmodule TaskSeatWeb.SessionView do
-  use TaskSeatWeb, :view
+defmodule TaskSheetWeb.SessionView do
+  use TaskSheetWeb, :view
 end

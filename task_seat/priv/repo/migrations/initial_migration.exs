@@ -1,6 +1,6 @@
-defmodule TaskSeat.Repo.Migrations do
+defmodule TaskSheet.Repo.Migrations do
 
-  alias TaskSeat.Repo
+  alias TaskSheet.Repo
 
   def main do
     File.read!("priv/repo/migrations/init.sql")
@@ -10,4 +10,4 @@ defmodule TaskSeat.Repo.Migrations do
 
 end
 
-TaskSeat.Repo.Migrations.main()
+TaskSheet.Repo.Migrations.main()

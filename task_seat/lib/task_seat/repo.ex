@@ -1,4 +1,4 @@
-defmodule TaskSeat.Repo do
+defmodule TaskSheet.Repo do
   use Ecto.Repo, otp_app: :task_seat
 
   @doc """

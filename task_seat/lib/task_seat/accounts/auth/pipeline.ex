@@ -1,8 +1,8 @@
-defmodule TaskSeat.Accounts.User.Pipeline do
+defmodule TaskSheet.Accounts.User.Pipeline do
   use Guardian.Plug.Pipeline,
     otp_app: :task_seat,
-    error_handler: TaskSeat.Accounts.User.ErrorHandler,
-    module: TaskSeat.Accounts.Auth.Guardian
+    error_handler: TaskSheet.Accounts.User.ErrorHandler,
+    module: TaskSheet.Accounts.Auth.Guardian
 
   # If there is a session token, restrict it to an access token and validate it
   plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}

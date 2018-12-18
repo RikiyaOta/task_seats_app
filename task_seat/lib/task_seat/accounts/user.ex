@@ -1,11 +1,11 @@
-defmodule TaskSeat.Accounts.User do
-  use TaskSeat.Schema
+defmodule TaskSheet.Accounts.User do
+  use TaskSheet.Schema
   import Ecto.Changeset
 
   alias Comeonin.Bcrypt
-  alias TaskSeat.Accounts.User
-  alias TaskSeat.Tasks.Sheat
-  alias TaskSeat.Tasks.Task
+  alias TaskSheet.Accounts.User
+  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Task
 
   schema "users" do
     field :name, :string

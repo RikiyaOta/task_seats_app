@@ -1,7 +1,7 @@
-defmodule TaskSeatWeb.Tasks.SheatController do
-  use TaskSeatWeb, :controller
+defmodule TaskSheetWeb.Tasks.SheatController do
+  use TaskSheetWeb, :controller
 
-  alias TaskSeat.Tasks
+  alias TaskSheet.Tasks
 
   def show(conn, %{"sheat_id" => id}) do
     sheat = Tasks.get_sheat_with_tasks(id)

@@ -1,13 +1,13 @@
-defmodule TaskSeatWeb.Tasks.TaskController do
-  use TaskSeatWeb, :controller
+defmodule TaskSheetWeb.Tasks.TaskController do
+  use TaskSheetWeb, :controller
 
   use Timex
   require Logger
 
-  alias TaskSeat.Tasks
-  alias TaskSeat.Tasks.Task
-  alias TaskSeat.Accounts
-  alias TaskSeat.Accounts.Auth.Guardian
+  alias TaskSheet.Tasks
+  alias TaskSheet.Tasks.Task
+  alias TaskSheet.Accounts
+  alias TaskSheet.Accounts.Auth.Guardian
 
   def show(conn, %{"task_id" => task_id}) do
     task = Tasks.get_task!(task_id)

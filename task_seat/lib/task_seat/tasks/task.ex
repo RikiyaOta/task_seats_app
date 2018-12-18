@@ -1,11 +1,11 @@
-defmodule TaskSeat.Tasks.Task do
-  use TaskSeat.Schema
+defmodule TaskSheet.Tasks.Task do
+  use TaskSheet.Schema
   import Ecto.Changeset
 
-  alias TaskSeat.Tasks.Task
-  alias TaskSeat.Tasks.Category
-  alias TaskSeat.Tasks.Sheat
-  alias TaskSeat.Accounts.User
+  alias TaskSheet.Tasks.Task
+  alias TaskSheet.Tasks.Category
+  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Accounts.User
 
   schema "tasks" do
     field :title, :string

@@ -1,4 +1,4 @@
-# TaskSeat
+# TaskSheet
 
 To start your Phoenix server:
 

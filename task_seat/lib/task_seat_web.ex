@@ -1,12 +1,12 @@
-defmodule TaskSeatWeb do
+defmodule TaskSheetWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use TaskSeatWeb, :controller
-      use TaskSeatWeb, :view
+      use TaskSheetWeb, :controller
+      use TaskSheetWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,17 +19,17 @@ defmodule TaskSeatWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: TaskSeatWeb
+      use Phoenix.Controller, namespace: TaskSheetWeb
       import Plug.Conn
-      import TaskSeatWeb.Router.Helpers
-      import TaskSeatWeb.Gettext
+      import TaskSheetWeb.Router.Helpers
+      import TaskSheetWeb.Gettext
     end
   end
 
   def view do
     quote do
       use Phoenix.View, root: "lib/task_seat_web/templates",
-                        namespace: TaskSeatWeb
+                        namespace: TaskSheetWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -37,9 +37,9 @@ defmodule TaskSeatWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import TaskSeatWeb.Router.Helpers
-      import TaskSeatWeb.ErrorHelpers
-      import TaskSeatWeb.Gettext
+      import TaskSheetWeb.Router.Helpers
+      import TaskSheetWeb.ErrorHelpers
+      import TaskSheetWeb.Gettext
     end
   end
 
@@ -54,7 +54,7 @@ defmodule TaskSeatWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import TaskSeatWeb.Gettext
+      import TaskSheetWeb.Gettext
     end
   end
 
