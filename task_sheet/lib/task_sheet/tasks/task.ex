@@ -4,7 +4,7 @@ defmodule TaskSheet.Tasks.Task do
 
   alias TaskSheet.Tasks.Task
   alias TaskSheet.Tasks.Category
-  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Sheet
   alias TaskSheet.Accounts.User
 
   schema "tasks" do
@@ -18,7 +18,7 @@ defmodule TaskSheet.Tasks.Task do
     field :modified_by, :binary_id
 
     belongs_to :category, Category
-    belongs_to :sheat, Sheat
+    belongs_to :sheet, Sheet
     many_to_many :users, User, join_through: "users_tasks", unique: true
   end
 
@@ -26,7 +26,7 @@ defmodule TaskSheet.Tasks.Task do
     title
     importance
     urgency
-    sheat_id
+    sheet_id
     created_at
     created_by
     modified_at
@@ -45,7 +45,7 @@ defmodule TaskSheet.Tasks.Task do
     |> check_constraint(:importance, name: :ch_importance)
     |> check_constraint(:urgency, name: :ch_urgency)
     |> foreign_key_constraint(:category_id, name: :fk_categories)
-    |> foreign_key_constraint(:sheat_id, name: :fk_sheats)
+    |> foreign_key_constraint(:sheet_id, name: :fk_sheets)
   end
 
 end

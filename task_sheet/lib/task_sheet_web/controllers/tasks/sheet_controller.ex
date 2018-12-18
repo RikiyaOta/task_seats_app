@@ -1,13 +1,13 @@
-defmodule TaskSheetWeb.Tasks.SheatController do
+defmodule TaskSheetWeb.Tasks.SheetController do
   use TaskSheetWeb, :controller
 
   alias TaskSheet.Tasks
 
-  def show(conn, %{"sheat_id" => id}) do
-    sheat = Tasks.get_sheat_with_tasks(id)
+  def show(conn, %{"sheet_id" => id}) do
+    sheet = Tasks.get_sheet_with_tasks(id)
     conn
     |> assign(:conn, conn)
-    |> assign(:sheat, sheat)
+    |> assign(:sheet, sheet)
     |> render("show.html")
   end
 

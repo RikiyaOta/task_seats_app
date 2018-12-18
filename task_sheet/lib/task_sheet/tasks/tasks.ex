@@ -8,36 +8,36 @@ defmodule TaskSheet.Tasks do
   alias TaskSheet.Repo
   alias TaskSheet.Accounts.User
   alias TaskSheet.Tasks.Task
-  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Sheet
 
-  def get_sheat(id), do: Repo.get(Sheat, id)
+  def get_sheet(id), do: Repo.get(Sheet, id)
 
-  def get_sheat!(id), do: Repo.get!(Sheat, id)
+  def get_sheet!(id), do: Repo.get!(Sheet, id)
 
-  def get_sheats_of_user(%User{} = user) do
+  def get_sheets_of_user(%User{} = user) do
     user
-    |> Repo.preload(:sheats)
-    |> Map.get(:sheats)
+    |> Repo.preload(:sheets)
+    |> Map.get(:sheets)
   end
 
-  def get_sheat_with_tasks(sheat_id) do
-    query = from s in Sheat,
+  def get_sheet_with_tasks(sheet_id) do
+    query = from s in Sheet,
       left_join: t in assoc(s, :tasks),
-      where: s.id == ^sheat_id,
+      where: s.id == ^sheet_id,
       preload: [tasks: t]
 
     Repo.one(query)
   end
 
-  def create_sheat(attrs \\ %{}) do
-    %Sheat{}
-    |> Sheat.changeset(attrs)
+  def create_sheet(attrs \\ %{}) do
+    %Sheet{}
+    |> Sheet.changeset(attrs)
     |> Repo.insert()
   end
 
-  def update_sheat(%Sheat{} = sheat, attrs \\ %{}) do
-    sheat
-    |> Sheat.changeset()
+  def update_sheet(%Sheet{} = sheet, attrs \\ %{}) do
+    sheet
+    |> Sheet.changeset()
     |> Repo.update()
   end
 
