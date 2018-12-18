@@ -3,7 +3,7 @@
 #old_name="task_seat"
 #new_name="task_sheet"
 
-old_name="seat"
+old_name="sheat"
 new_name="sheet"
 
 for filename in $(grep -r -l -E $old_name ${PWD})
