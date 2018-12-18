@@ -6,7 +6,7 @@ defmodule TaskSheetWeb.UserController do
 
   alias TaskSheet.Accounts
   alias TaskSheet.Accounts.User
-  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Sheet
 
   def new(conn, _params) do
     changeset = Accounts.change_user(%User{}, %{})

@@ -7,7 +7,7 @@ defmodule TaskSheet.Accounts do
   alias TaskSheet.Repo
   alias TaskSheet.Accounts.SystemAccount
   alias TaskSheet.Accounts.User
-  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Sheet
 
   # User 
   def change_user(%User{} = user, attrs \\ %{}) do
@@ -27,7 +27,7 @@ defmodule TaskSheet.Accounts do
   def create_user_with_associated_sheats(attrs) do
     %User{}
     |> User.changeset(attrs)
-    |> Ecto.Changeset.cast_assoc(:sheats, with: &Sheat.changeset/2)
+    |> Ecto.Changeset.cast_assoc(:sheats, with: &Sheet.changeset/2)
     |> Repo.insert()
   end
 

@@ -1,4 +1,4 @@
-defmodule TaskSheetWeb.Tasks.SheatController do
+defmodule TaskSheetWeb.Tasks.SheetController do
   use TaskSheetWeb, :controller
 
   alias TaskSheet.Tasks

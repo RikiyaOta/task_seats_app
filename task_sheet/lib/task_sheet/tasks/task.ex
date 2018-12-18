@@ -4,7 +4,7 @@ defmodule TaskSheet.Tasks.Task do
 
   alias TaskSheet.Tasks.Task
   alias TaskSheet.Tasks.Category
-  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Sheet
   alias TaskSheet.Accounts.User
 
   schema "tasks" do
@@ -18,7 +18,7 @@ defmodule TaskSheet.Tasks.Task do
     field :modified_by, :binary_id
 
     belongs_to :category, Category
-    belongs_to :sheat, Sheat
+    belongs_to :sheat, Sheet
     many_to_many :users, User, join_through: "users_tasks", unique: true
   end
 

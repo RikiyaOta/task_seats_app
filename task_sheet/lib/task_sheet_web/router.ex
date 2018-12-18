@@ -43,7 +43,7 @@ defmodule TaskSheetWeb.Router do
   scope "/tasks", TaskSheetWeb.Tasks, [as: :task_sheet_tasks] do
     pipe_through [:browser, :auth, :ensure_auth]
 
-    get "/sheat/show/:sheat_id",   SheatController, :show
+    get "/sheat/show/:sheat_id",   SheetController, :show
 
     get "/task/new/:sheat_id",     TaskController,  :new
     post "/task/create/:sheat_id", TaskController,  :create

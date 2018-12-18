@@ -1,8 +1,8 @@
-defmodule TaskSheet.Tasks.Sheat do
+defmodule TaskSheet.Tasks.Sheet do
   use TaskSheet.Schema
   import Ecto.Changeset
 
-  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Sheet
   alias TaskSheet.Accounts.User
   alias TaskSheet.Tasks.Category
   alias TaskSheet.Tasks.Task
@@ -27,7 +27,7 @@ defmodule TaskSheet.Tasks.Sheat do
     modified_by
   )a
 
-  def changeset(%Sheat{} = sheat, attrs \\ %{}) do
+  def changeset(%Sheet{} = sheat, attrs \\ %{}) do
     sheat
     |> cast(attrs, @required_fields)
     |> validate_required(@required_fields)

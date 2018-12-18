@@ -3,7 +3,7 @@ defmodule TaskSheet.Tasks.Category do
   import Ecto.Changeset
 
   alias TaskSheet.Tasks.Category
-  alias TaskSheet.Tasks.Sheat
+  alias TaskSheet.Tasks.Sheet
   alias TaskSheet.Tasks.Task
 
   schema "categories" do
@@ -14,7 +14,7 @@ defmodule TaskSheet.Tasks.Category do
     field :modified_at, :utc_datetime
     field :modified_by, :binary_id
 
-    belongs_to :sheat, Sheat
+    belongs_to :sheat, Sheet
     has_many :tasks, Task
   end
 
