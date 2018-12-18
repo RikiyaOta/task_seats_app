@@ -1,7 +1,10 @@
 #!/bin/bash
 
-old_module_name="TaskSeat"
-new_module_name="TaskSheet"
+#old_module_name="TaskSeat"
+#new_module_name="TaskSheet"
+
+old_module_name="Sheat"
+new_module_name="Sheet"
 
 for filename in $(grep -r -l -E $old_module_name ${PWD})
 do
